@@ -110,4 +110,73 @@ catch( PDOException $e ) { exit( "PDO error [create category]: " . $e->getMessag
 
 echo "Created the category table.<br />";
 
+try
+{
+	$st = $db->prepare(
+		'CREATE TABLE IF NOT EXISTS report (' .
+		'id_report int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
+		'id_user int NOT NULL,' .
+		'amount DOUBLE NOT NULL,' .
+        'start_date date NOT NULL,' .
+		'end_date date NOT NULL,' .
+        'description varchar(500) NOT NULL ) '
+	);
+
+	$st->execute();
+}
+catch( PDOException $e ) { exit( "PDO error [create report]: " . $e->getMessage() ); }
+
+echo "Created the report table.<br />";
+
+try
+{
+	$st = $db->prepare(
+		'CREATE TABLE IF NOT EXISTS expenses_report (' .
+		'id_expenses_report int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
+		'id_izvjestaj int NOT NULL,' .
+		'id_exspense int NOT NULL,' .
+		'id_savings_contributions int NOT NULL )'
+	);
+
+	$st->execute();
+}
+catch( PDOException $e ) { exit( "PDO error [create expenses_report]: " . $e->getMessage() ); }
+
+echo "Created the expenses_report table.<br />";
+
+try
+{
+	$st = $db->prepare(
+		'CREATE TABLE IF NOT EXISTS savings (' .
+		'id_savings int NOT NULL,' .
+		'id_user int NOT NULL,' .
+		'savings_name varchar(50) NOT NULL,' .
+		'savings_goal DOUBLE NOT NULL,' .
+		'current_balance DOUBLE NOT NULL,' .
+		'deadline date NOT NULL,' .
+		'PRIMARY KEY (id_savings, id_user) )'
+	);
+
+	$st->execute();
+}
+catch( PDOException $e ) { exit( "PDO error [create savings]: " . $e->getMessage() ); }
+
+echo "Created the savings table.<br />";
+
+try
+{
+	$st = $db->prepare(
+		'CREATE TABLE IF NOT EXISTS savings_contributions (' .
+		'id_savings_contributions int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
+		'id_savings int NOT NULL,' .
+		'payment_amount DOUBLE NOT NULL,' .
+		'contribution_date date NOT NULL )' 
+	);
+
+	$st->execute();
+}
+catch( PDOException $e ) { exit( "PDO error [create savings_contributions]: " . $e->getMessage() ); }
+
+echo "Created the savings_contributions table.<br />";
+
 ?>
