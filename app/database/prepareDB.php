@@ -61,13 +61,10 @@ try
 		'username varchar(50) UNIQUE NOT NULL,' .
         'password_hash varchar(255) NOT NULL,' .
         'email varchar(255) NOT NULL,'. 
-        'registration_sequence varchar(50) NOT NULL,' . 
-        'has_registered int NOT NULL,' . 
         'is_admin int NOT NULL,' .
-		'ime varchar(50) NOT NULL,' .
-		'prezime varchar(50) NOT NULL,' .
-		'date_of_birth date NOT NULL,' . 
-        'stanje DOUBLE NOT NULL )'
+		'name varchar(50) NOT NULL,' .
+		'surname varchar(50) NOT NULL,' .
+        'balance DOUBLE NOT NULL )'
 	);
 
 	$st->execute();
@@ -127,22 +124,6 @@ try
 catch( PDOException $e ) { exit( "PDO error [create report]: " . $e->getMessage() ); }
 
 echo "Created the report table.<br />";
-
-try
-{
-	$st = $db->prepare(
-		'CREATE TABLE IF NOT EXISTS expenses_report (' .
-		'id_expenses_report int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
-		'id_izvjestaj int NOT NULL,' .
-		'id_exspense int NOT NULL,' .
-		'id_savings_contributions int NOT NULL )'
-	);
-
-	$st->execute();
-}
-catch( PDOException $e ) { exit( "PDO error [create expenses_report]: " . $e->getMessage() ); }
-
-echo "Created the expenses_report table.<br />";
 
 try
 {
