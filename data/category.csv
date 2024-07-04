@@ -1,0 +1,20 @@
+id_category;category_name;description
+1;Odmor;Novci potrošeni na odmoru
+2;Posao;Dobivena plaća
+3;Poklon;Dobiveni novci na poklon
+4;Hrana;Novci potrošeni na hranu i piće
+5;Prijevoz;Troškovi prijevoza
+6;Zdravlje;Troškovi lijekova i medicinskih usluga
+7;Edukacija;Troškovi obrazovanja i tecajeva
+8;Sport;Troškovi sportske opreme i članarina
+9;Zabava;Troškovi izlazaka i zabavnih aktivnosti
+10;Stanovanje;Troškovi stanovanja i režija
+11;Osiguranje;Troškovi osiguranja
+12;Darovi;Novac potrošen na darove
+13;Komunalije;Troškovi komunalnih usluga
+14;Oprema;Kupnja opreme za kućanstvo
+15;Hobiji;Troškovi hobija i slobodnih aktivnosti
+16;Dječje potrebe;Troškovi povezani s djecom
+17;Povrat poreza;Dobiven povrat poreza
+18;Uplata;Uplata
+19;Režije;Režije za stan

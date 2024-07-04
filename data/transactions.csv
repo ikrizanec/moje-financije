@@ -1,0 +1,21 @@
+id_transactions;id_user;id_category;amount;transaction_date;description;type
+1;1;2;50.25;2024-06-15.;Dobivena plaća;income
+2;1;4;25.50;2024-06-17;Shopping hrane;expense
+3;2;2;55.22;2024-06-15.;Dobivena plaća;income
+4;2;9;15.50;2024-06-20;Izlazak;expense
+5;3;2;60.00;2024-06-15.;Dobivena plaća;income
+6;3;8;23.30;2024-06-01;Gym članarina;expense
+7;3;6;30.50;2024-06-04;Suplementi;expense
+8;4;2;35.60;2024-06-15.;Dobivena plaća;income
+9;4;5;13.30;2024-06-02;Zet pokaz;expense
+10;5;2;120.50;2024-06-15.;Dobivena plaća;income
+11;5;4;13.30;2024-06-02;Kupljena hrana;expense
+12;6;2;130.50;2024-06-15.;Dobivena plaća;income
+13;6;12;103.30;2024-06-25;Kupljen poklon za diplomu;expense
+14;7;2;24.50;2024-06-15.;Dobivena plaća;income
+15;7;18;20.00;2024-06-27;Uplata od mame;income
+16;8;2;28.20;2024-06-15.;Dobivena plaća;income
+17;8;1;105.30;2024-06-28;Odmor na Hvaru;expense
+18;9;2;24.30;2024-06-15.;Dobivena plaća;income
+19;9;19;45.50;2024-06-20;Plaćene režije;expense
+20;9;11;10.00;2024-06-21;Plaćeno osiguranje;expense
