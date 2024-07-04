@@ -76,13 +76,14 @@ echo "Created the users table.<br />";
 try
 {
 	$st = $db->prepare(
-		'CREATE TABLE IF NOT EXISTS expenses (' .
-		'id_expenses int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
+		'CREATE TABLE IF NOT EXISTS transactions (' .
+		'id_transactions int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
 		'id_user int NOT NULL,' .
 		'id_category int NOT NULL,' .
         'amount DOUBLE NOT NULL,' .
-        'expense_date date NOT NULL,' .
-        'description varchar(500) NOT NULL )' 
+        'transaction_date date NOT NULL,' .
+        'description varchar(500) NOT NULL,' . 
+		'type ENUM(\'expense\', \'income\') )'
 	);
 
 	$st->execute();
@@ -97,8 +98,7 @@ try
 		'CREATE TABLE IF NOT EXISTS category (' .
 		'id_category int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
 		'category_name varchar(50) NOT NULL,' .
-		'description varchar(500), ' .
-		'type varchar(50) NOT NULL )'
+		'description varchar(500) )' 
 	);
 
 	$st->execute();
