@@ -10,12 +10,12 @@
 </head>
 <body>
     <div class="topnav" id="myTopnav">
-        <a href="" class="active">Home</a>
-        <a href="">Exspenses</a>
-        <a href="">Categories</a>
-        <a href="">Savings</a>
-        <a href="">Report</a>
-        <a href="">Log out</a>
+        <a href="<?php echo __SITE_URL . '/index.php?rt=home'; ?>" class="active">Home</a>
+        <a href="<?php echo __SITE_URL . '/index.php?rt=exspenses'; ?>">Exspenses</a>
+        <a href="<?php echo __SITE_URL . '/index.php?rt=categories'; ?>">Categories</a>
+        <a href="<?php echo __SITE_URL . '/index.php?rt=savings'; ?>">Savings</a>
+        <a href="<?php echo __SITE_URL . '/index.php?rt=report'; ?>">Report</a>
+        <a href="<?php echo __SITE_URL . '/index.php?rt=logout'; ?>">Log out</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
         </a>
