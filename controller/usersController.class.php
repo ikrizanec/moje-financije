@@ -6,6 +6,7 @@ class UsersController {
     }
 
     public function login() {
+        include __SITE_PATH . '/view/login.php';
         //dodat logiku za logiranje (ako prode, header location transactions list?..., ako ne  $error, pa header login form)
     }
 
