@@ -18,4 +18,8 @@ class UsersController {
         session_destroy();
         header('Location: ' . __SITE_URL . '/index.php?rt=users/login');
     }
+
+    public function home() {
+        include __SITE_PATH . '/view/user_home.php';
+    }
 }
