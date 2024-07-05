@@ -6,7 +6,8 @@ class UsersController {
     }
 
     public function login() {
-        //dodat logiku za logiranje (ako prode, header location home?..., ako ne  $error, pa header login form)
+        include __SITE_PATH . '/view/login.php';
+        //dodat logiku za logiranje (ako prode, header location transactions list?..., ako ne  $error, pa header login form)
     }
 
     private function showLoginForm($error = null) {
