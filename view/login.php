@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moje financije</title>
-    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo __SITE_URL . '/css/login.css';?>">
 </head>
 <body>
-	<form action="<?php echo __SITE_URL . '/index.php?rt=login' ?>" method="post">
+	<form action="<?php echo __SITE_URL . '/index.php?rt=users/login'; ?>" method="post">
 		<div class="login-box">
 			<h1>Login</h1>
 
