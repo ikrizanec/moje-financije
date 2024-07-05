@@ -42,6 +42,25 @@ class TransactionsService
 		}
 		return $arr;
 	}
+	
+    function getTransactionsByCategory( $id_user, $id_category )
+	{
+		try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare( 'SELECT * FROM transactions WHERE id_user=:id_user AND id_category=:id_category' );
+			$st->execute( array( 'id_user' => $id_user, 'id_category' => $id_category ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		$arr = array();
+		while( $row = $st->fetch() )
+		{
+			$arr[] = new Transactions ($row['id_transactions'], $row['id_user'], $row['id_category'], $row['amount'],
+                    $row['transaction_date'], $row['description'], $row['type'] );
+		}
+		return $arr;
+	}
 
     function getTransactionsByDate( $id_user, $begin_date, $end_date )
     {
