@@ -6,7 +6,7 @@ class UsersController {
     }
 
     public function login() {
-        //dodat logiku za logiranje (ako prode, header location transactions list?..., ako ne  $error, pa header login form)
+        //dodat logiku za logiranje (ako prode, header location home?..., ako ne  $error, pa header login form)
     }
 
     private function showLoginForm($error = null) {
@@ -16,5 +16,9 @@ class UsersController {
     public function logout() {
         session_destroy();
         header('Location: ' . __SITE_URL . '/index.php?rt=users/login');
+    }
+
+    public function home() {
+        include __SITE_PATH . '/view/user_home.php';
     }
 }
