@@ -39,6 +39,18 @@ class CategoryService
 		else
 			return new Category( $row['id_category'], $row['category_name'], $row['description'] );
     }
+
+    function addCategory( $category_name, $description )
+    {
+        try
+        {
+            $db = DB::getConnection();
+            $st = $db->prepare('INSERT INTO category( category_name, description ) VALUES
+					  (:category_name, :description)');
+            $st->execute( array( 'category_name' => $category_name , 'description' => $description ) );
+        }
+        catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+    }
 };
 
 ?>
