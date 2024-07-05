@@ -22,6 +22,23 @@ class CategoryService
 		}
 		return $arr;
     }
+
+    function getCategoryByName( $category_name )
+    {
+        try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare('SELECT * FROM category WHERE category_name=:category_name');
+			$st->execute( array( 'category_name' => $category_name ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		$row = $st->fetch();
+		if( $row === false )
+			return null;
+		else
+			return new Category( $row['id_category'], $row['category_name'], $row['description'] );
+    }
 };
 
 ?>
