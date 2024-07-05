@@ -44,7 +44,7 @@ class UserService{
 	}
 
 
-    function updateName($username, $name)
+    function updateName( $username, $name )
     {
         try
         {
@@ -55,7 +55,7 @@ class UserService{
         catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
     }
 
-    function updateSurname($username, $surname)
+    function updateSurname( $username, $surname )
     {
         try
         {
@@ -66,13 +66,41 @@ class UserService{
         catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
     }
 
-    function updateEmail($username, $email)
+    function updateEmail( $username, $email )
     {
         try
         {
             $db = DB::getConnection();
             $st = $db->prepare('UPDATE users SET email = :email WHERE username = :username');
             $st->execute( array( 'username' => $username , 'email' => $email ) );
+        }
+        catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+    }
+
+    function isAdmin( $id_user )
+    {
+        try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare( 'SELECT is_admin FROM users WHERE id_user=:id_user' );
+			$st->execute( array( 'id_user' => $id_user ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+        $row = $st->fetch();
+		if( $row === false )
+			return false;
+        else
+            return true;
+    }
+
+    function updateBalance( $username, $balance )
+    {
+        try
+        {
+            $db = DB::getConnection();
+            $st = $db->prepare('UPDATE users SET balance = :balance WHERE username = :username');
+            $st->execute( array( 'username' => $username , 'balance' => $balance ) );
         }
         catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
     }
