@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo __SITE_URL . '/style/login.css';?>">
 </head>
 <body>
-	<form method="post" action="<?php echo __SITE_URL . '/index.php?rt=login' ?>" >
+	<form method="post" action="<?php echo __SITE_URL . '/index.php?rt=users/login' ?>" >
 		<div class="login-box">
 			<h1>Login</h1>
 
@@ -24,28 +24,6 @@
 			<input class="button" type="submit" name="login" value="sign in">
 		</div>
 	</form>
-
-	<script>
-        $(document).ready(function() {
-            $('#loginForm').on('submit', function(event) {
-                event.preventDefault();
-                var username = $('#username').val();
-                var password = $('#password').val();
-
-                $.ajax({
-                    url: '<?php echo __SITE_URL; ?>/index.php?rt=login',
-                    type: 'POST',
-                    data: { username: username, password: password },
-                    success: function(response) {
-                        console.log('Odgovor servera:', response);
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.error('Greška:', textStatus, errorThrown);
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 
 
