@@ -12,16 +12,17 @@ class CategoriesController {
 
     public function add() {
         $message = '';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['category-name']) && isset($_POST['category-description'])) {
+            if (isset($_POST['category-name']) && isset($_POST['category-description']) && !empty($_POST['category-name']) && !empty($_POST['category-description'])) {
                 $cs = new CategoryService();
                 $categoryName = $_POST['category-name'];
                 $categoryDescription = $_POST['category-description'];
 
                 $cs->addCategory($categoryName, $categoryDescription);
-                $message = "Uspješno dodana nova kategorija!";
+                $message = "Category successfully added.";
             } else {
-                $message = "Došlo je do greške. Unesite sva polja!";
+                $message = "Please fill in both the category name and description.";
             }
         }
 
