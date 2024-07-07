@@ -1,17 +1,10 @@
 <?php require_once __SITE_PATH . '/view/_header.php'; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moje financije</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
 <body>
-    <button id="addCategoryBtn">Add Category</button>
-    <p id="test"></p>
-
+    <button id="addCategoryBtn" class="addButton">add new category</button>
+   
+        <p id="test"></p>
+    
 
     <script>
         $.ajax(
@@ -24,10 +17,21 @@
             },
             dataType: 'json',
             success: function(data) {
-                let output = "";
+                let output = `<table id="categoriesTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
                 data.categories.forEach(category => {
-                    output += `<p> Name: ${category.category_name}, Description: ${category.description}</p>`;
+                    output += `<tr>
+                        <td>${category.category_name}</td>
+                        <td>${category.description}</td>
+                       </tr>`;
                 });
+                output += `</tbody></table>`;
                 $('#test').html(output);
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -36,7 +40,6 @@
             }
         } );
 
-        // Button click event handler
         $('#addCategoryBtn').click(function() {
                 window.location.href = '<?php echo __SITE_URL; ?>/index.php?rt=categories/add';
         });
