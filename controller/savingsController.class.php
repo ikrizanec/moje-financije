@@ -1,7 +1,7 @@
 <?php
 require_once __SITE_PATH . '/model/saving_service.class.php';
 require_once __SITE_PATH . '/model/saving.class.php';
-require_once __SITE_PATH . '/model/users_service.class.php';
+require_once __SITE_PATH . '/model/user_service.class.php';
 
 class SavingsController {
 
@@ -26,7 +26,6 @@ class SavingsController {
     }
 
     public function add() {
-        //ako su poslani podaci s forme, dodat ih, prihazat poruku o uspješnom dodavanju ($message) i vratit se na formu za dodavanje:
         $message = '';
         include __SITE_PATH . '/view/saving_add.php';
     }
@@ -37,4 +36,11 @@ class SavingsController {
         include __SITE_PATH . '/view/saving_contribution_add.php';
     }
 
+    public function sendJSONandExit( $message )
+    {
+        header( 'Content-type:application/json;charset=utf-8' );
+        echo json_encode( $message );
+        flush();
+        exit( 0 );
+    }
 }
