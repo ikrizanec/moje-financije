@@ -1,10 +1,11 @@
 <?php require_once __SITE_PATH . '/view/_header.php'; ?>
 
 <body>
-    <button id="addCategoryBtn" class="addButton">add new category</button>
-   
-        <p id="test"></p>
-    
+    <div class="buttonContainer">
+        <button id="addCategoryBtn" class="button">add new category</button>
+    </div>
+    <p id="test" class="test"></p>
+
 
     <script>
         $.ajax(
@@ -32,11 +33,11 @@
                        </tr>`;
                 });
                 output += `</tbody></table>`;
-                $('#test').html(output);
+                $('.test').html(output);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.error('Error:', textStatus, errorThrown);
-                $('#test').html('An error occurred while fetching categories.');
+                $('.test').html('An error occurred while fetching categories.');
             }
         } );
 
