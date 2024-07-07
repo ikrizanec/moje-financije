@@ -25,7 +25,7 @@
             success: function(data) {
                 let output = "";
                 data.savings.forEach(saving => {
-                    output += `<p> Name: ${saving.savings_name}, Description: ${saving.savings_goal}</p>`;
+                    output += `<p> Name: ${saving.savings_name}, Goal: ${saving.savings_goal}, Balance: ${saving.current_balance}, Deadline: ${saving.deadline}</p>`;
                 });
                 $('#test').html(output);
             },
