@@ -23,7 +23,6 @@
             },
             dataType: 'json',
             success: function(data) {
-                console.log(data);
                 let output = "";
                 data.savings.forEach(saving => {
                     output += `<p> Name: ${saving.savings_name}, Description: ${saving.savings_goal}</p>`;
