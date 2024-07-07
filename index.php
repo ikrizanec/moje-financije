@@ -8,7 +8,7 @@ define('__SITE_URL', $site_url);
 
 if (!isset($_GET['rt'])) {
     $con = 'users';
-    $action = 'index';
+    $action = 'showLoginForm';
 } else {
     $rt = $_GET['rt'];
     $x = explode('/', $rt);
@@ -25,3 +25,5 @@ $controllerName = $con . 'Controller';
 require_once __SITE_PATH . '/controller/' . $controllerName . '.class.php';
 $c = new $controllerName;
 $c->$action();
+
+?>
