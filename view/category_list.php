@@ -9,7 +9,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <button id="addCategoryBtn">Add Category</button>
     <p id="test"></p>
+
 
     <script>
         $.ajax(
@@ -33,6 +35,13 @@
                 $('#test').html('An error occurred while fetching categories.');
             }
         } );
+
+        // Button click event handler
+        $('#addCategoryBtn').click(function() {
+                window.location.href = '<?php echo __SITE_URL; ?>/index.php?rt=categories/add';
+        });
     </script>
 </body>
 </html>
+
+<?php require_once __SITE_PATH . '/view/_footer.php'; ?>
