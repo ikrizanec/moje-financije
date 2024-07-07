@@ -9,19 +9,19 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>Add Category</h1>
+    <h1 class="title">add new category</h1>
 
-    <form id="addCategoryForm">
+    <form id="addCategoryForm" class="form">
         <div>
-            <label for="name">Name:</label>
+            <label for="name" class="label">Name:</label>
             <input type="text" id="name" name="name" required>
         </div>
-        <div>
-            <label for="description">Description:</label>
+        <div class="inputGroup">
+            <label for="description" class="label">Description:</label>
             <textarea id="description" name="description" rows="4" required></textarea>
         </div>
-        <div>
-            <button type="submit">Create</button>
+        <div class="buttonContainer">
+            <button type="submit" class="button">create</button>
         </div>
     </form>
 
