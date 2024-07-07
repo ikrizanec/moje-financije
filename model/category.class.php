@@ -1,6 +1,6 @@
 <?php
 
-class Category
+class Category implements jsonSerializable
 {
     protected $id_category, $category_name, $description;
 
@@ -13,5 +13,13 @@ class Category
 
 	function __get( $prop ) { return $this->$prop; }
 	function __set( $prop, $val ) { $this->$prop = $val; return $this; }
+
+	public function jsonSerialize() {
+        return [
+            'id_category' => $this->id_category,
+            'category_name' => $this->category_name,
+            'description' => $this->description,
+        ];
+    }
 };
 ?>
