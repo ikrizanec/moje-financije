@@ -17,11 +17,13 @@ class UsersController {
             $us = new UserService();
             $user = $us->getUserByUsername( $_POST['username'] );
 
+            var_dump($_POST);
+
             if( $user === null )
             {
                 header( 'Location: ' . __SITE_URL . '/index.php?rt=users/login' );
             }
-            else if( $_POST['password'] !== $user->password_hash ) // treba koristiti password_verify kad proradi rp server
+            else if( !password_verify( $_POST['password'], $user->password_hash ) )
             {
                 header( 'Location: ' . __SITE_URL . '/index.php?rt=login' );
             }
