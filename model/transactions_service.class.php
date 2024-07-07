@@ -90,8 +90,36 @@ class TransactionsService
 					  (:id_user, :id_category, :amount, :transaction_date, :description, :type )');
             $st->execute( array( 'id_user' => $id_user , 'id_category' => $id_category, 'amount' => $amount, 'transaction_date' => $transaction_date,
             'description' => $description, 'type' => $type ) );
+			return true;
         }
-        catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+        catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); 
+		return false;
+		}
     }
+
+	public function getCategoryNames()
+	{
+		try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare( 'SELECT id_category, category_name  FROM category' );
+			$st->execute();
+	
+			$arr = array();
+			while ($row = $st->fetch(PDO::FETCH_ASSOC))
+			{
+				$arr[] = [
+					'id_category' => $row['id_category'],
+					'category_name' => $row['category_name']
+				];
+			}
+			return $arr;
+		}
+		catch (PDOException $e)
+		{
+			throw new Exception('PDO error: ' . $e->getMessage());
+		}
+	}
+	
 };
 ?>
