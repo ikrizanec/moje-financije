@@ -1,6 +1,6 @@
 <?php
 
-class Saving
+class Saving implements jsonSerializable
 {
     protected $id_savings, $id_user, $savings_name, $savings_goal, $current_balance, $deadline;
 
@@ -16,5 +16,16 @@ class Saving
 
 	function __get( $prop ) { return $this->$prop; }
 	function __set( $prop, $val ) { $this->$prop = $val; return $this; }
+
+	public function jsonSerialize(): mixed {
+        return [
+            'id_savings' => $this->id_savings,
+            'id_user' => $this->id_user,
+            'savings_name' => $this->savings_name,
+            'savings_goal' => $this->savings_goal,
+            'current_balance' => $this->current_balance,
+            'deadline' => $this->deadline
+        ];
+    }
 };
 ?>
