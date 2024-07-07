@@ -53,3 +53,12 @@ body {
       text-align: left;
     }
   }
+
+  footer {
+     background-color: #191970;
+     color: #f2f2f2;
+     text-align: center;
+     padding: 20px;
+     position: relative;
+     bottom: 0;
+  }
