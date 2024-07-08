@@ -69,7 +69,7 @@
             let incomeCategoryNames = Object.keys(incomes);
             let incomeCategoryAmounts = Object.values(incomes);
 
-                        // Funkcija za prilagodbu tooltipa
+            // Funkcija za prilagodbu tooltipa
             function currencyTooltip(tooltipItem) {
                 return tooltipItem.label + ': ' + tooltipItem.raw + ' €'; // Promijenite simbol valute prema potrebi
             }
@@ -148,7 +148,7 @@
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
-                                    return context.raw + ' €'; // Dodajte valutu ovdje
+                                    return context.raw + ' €';
                                 }
                             }
                         }
