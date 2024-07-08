@@ -26,8 +26,25 @@ class SavingsController {
     }
 
     public function add() {
-        $message = '';
-        include __SITE_PATH . '/view/saving_add.php';
+        if ( isset( $_POST['action'] ) && isset( $_SESSION['username'] ) && $_POST['action'] === 'add' )
+        {
+            $us = new UserService();
+            $user = $us->getUserByUsername( $_SESSION['username'] );
+            $id_user = $user->id_user;
+            $ss = new SavingService();
+            $savings_name = $_POST['savings_name'];
+            $savings_goal = $_POST['savings_goal'];
+            $current_balance = 0;
+            $deadline = $_POST['deadline'];
+            $ss->addSaving( $id_user, $savings_name, $savings_goal, $current_balance, $deadline );
+            
+            $message['message'] = 'Saving added successfully!';
+            $this->sendJSONandExit($message);
+        } 
+        else 
+        {
+            include __SITE_PATH . '/view/saving_add.php';
+        }
     }
 
     public function add_contribution() {
