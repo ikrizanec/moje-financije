@@ -6,17 +6,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Transaction</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-    <h1>Add Transaction</h1>
+    <h1 class="title">add new transaction</h1>
 
-    <form id="addTransactionForm">
+    <form id="addTransactionForm" class="form">
         <div>
-            <label for="category">Category:</label>
+            <label for="category" class="label">Category:</label>
             <select id="category" name="category" required>
                 <?php foreach ($categories as $category): ?>
                     <option value="<?php echo $category['id_category']; ?>"><?php echo $category['category_name']; ?></option>
@@ -24,26 +23,26 @@
             </select>
         </div>
         <div>
-            <label for="amount">Amount:</label>
+            <label for="amount" class="label">Amount:</label>
             <input type="text" id="amount" name="amount" required>
         </div>
         <div>
-            <label for="date">Date:</label>
+            <label for="date" class="label">Date:</label>
             <input type="text" id="date" name="date" required>
         </div>
         <div>
-            <label>Description:</label><br>
+            <label for="description" class="label">Description:</label><br>
             <textarea id="description" name="description" rows="4" required></textarea>
         </div>
         <div>
-            <label>Type:</label><br>
+            <label for="radio" class="label">Type:</label><br>
             <input type="radio" id="income" name="type" value="income" required>
-            <label for="income">Income</label>
+            <label for="income" lass="label">Income</label>
             <input type="radio" id="expense" name="type" value="expense" required>
-            <label for="expense">Expense</label>
+            <label for="expense" lass="label">Expense</label>
         </div>
-        <div>
-            <button type="submit">Create</button>
+        <div class="buttonContainer">
+            <button type="submit" class="button">Create</button>
         </div>
     </form>
 
