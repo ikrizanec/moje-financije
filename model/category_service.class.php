@@ -51,6 +51,7 @@ class CategoryService
         }
         catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
     }
+
 };
 
 ?>

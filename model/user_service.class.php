@@ -101,8 +101,11 @@ class UserService{
             $db = DB::getConnection();
             $st = $db->prepare('UPDATE users SET balance = :balance WHERE username = :username');
             $st->execute( array( 'username' => $username , 'balance' => $balance ) );
+            return true;
         }
-        catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+        catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() );
+        return false;
+    }
     }
 };
 ?>
