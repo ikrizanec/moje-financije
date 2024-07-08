@@ -129,7 +129,7 @@ try
 {
 	$st = $db->prepare(
 		'CREATE TABLE IF NOT EXISTS savings (' .
-		'id_savings int NOT NULL,' .
+		'id_savings int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
 		'id_user int NOT NULL,' .
 		'savings_name varchar(50) NOT NULL,' .
 		'savings_goal DOUBLE NOT NULL,' .
