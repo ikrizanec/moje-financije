@@ -1,17 +1,12 @@
 <?php require_once __SITE_PATH . '/view/_header.php'; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moje financije</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
 <body>
     <main>
-    <button id="addBtn">Add Transaction</button>
-    <p id="test"></p>
+    <div class="buttonContainer">
+        <button id="addBtn" class="button">add transaction</button>
+    </div>
+    <p id="test" class="test"></p>
+
 
     <script>
         $.ajax(
@@ -24,11 +19,28 @@
             },
             dataType: 'json',
             success: function(data) {
-                let output = "";
+                let output = `<table id="categoriesTable">
+                        <thead>
+                            <tr>
+                                <th>category</th>
+                                <th>type</th>
+                                <th>description</th>
+                                <th>date</th>
+                                <th>amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
                 data.transactions.forEach(transaction => {
-                    output += `<p> Category: ${transaction.category_name}, Amount: ${transaction.amount}, Date: ${transaction.transaction_date}, Type: ${transaction.type}, Description: ${transaction.description}</p>`;
+                    output += `<tr>
+                        <td>${transaction.category_name}</td>
+                        <td>${transaction.type}</td>
+                        <td>${transaction.description}</td>
+                        <td>${transaction.transaction_date}</td>
+                        <td>${transaction.amount} €</td>
+                       </tr>`;
                 });
-                $('#test').html(output);
+                output += `</tbody></table>`;
+                $('.test').html(output);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.error('Error:', textStatus, errorThrown);
