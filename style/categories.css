@@ -90,3 +90,31 @@ input[type="text"], textarea {
 #categoriesTable tr:hover {
     background-color: #ddd;
 }
+
+.balanceContainer {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.balance {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#myPieChartIncome, #myPieChartExpense {
+    width: 200px !important;
+    height: 200px !important;
+}
+
+.pieChartContainer {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}

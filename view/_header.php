@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo __SITE_URL . '/style/style.css';?>">
     <link rel="stylesheet" type="text/css" href="<?php echo __SITE_URL . '/style/categories.css';?>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="topnav" id="myTopnav">
