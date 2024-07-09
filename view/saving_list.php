@@ -10,6 +10,9 @@
 </head>
 <body>
     <main>
+    <div class="buttonContainer">
+        <button id="addSavingsBtn" class="button">add new savings</button>
+    </div>
     <p id="test"></p>
 
     <script>
@@ -34,6 +37,9 @@
                 $('#test').html('An error occurred while fetching savings.');
             }
         } );
+        $('#addSavingsBtn').click(function() {
+                window.location.href = '<?php echo __SITE_URL; ?>/index.php?rt=savings/add';
+        });
     </script>
 
 <?php require_once __SITE_PATH . '/view/_footer.php'; ?>
