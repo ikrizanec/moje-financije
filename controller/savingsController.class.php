@@ -48,11 +48,39 @@ class SavingsController {
     }
 
     public function add_contribution() {
-        //ako su poslani podaci s forme, dodat ih, prihazat poruku o uspješnom dodavanju ($message) i vratit se na formu za dodavanje:
-        $message = '';
-        include __SITE_PATH . '/view/saving_contribution_add.php';
-    }
+        if ( isset( $_POST['action'] ) && isset( $_SESSION['username'] ) && $_POST['action'] === 'add_contribution' )
+        {
+            $us = new UserService();
+            $user = $us->getUserByUsername( $_SESSION['username'] );
+            $id_user = $user->id_user;
+            $sc = new SavingsContributionsService();
+            $id_savings = $_POST['id_savings'];
+            $payment_amount = $_POST['payment_amount'];
+            $contribution_date = date('Y-m-d');
+            $new_balance = $user->balance - $payment_amount;
+            if ( $new_balance >= 0 )
+            {
+                $sc->addSavingsContributions( $id_savings, $payment_amount, $contribution_date );
+                $message['message'] = 'Saving added successfully!';
+                $us->updateBalance( $id_user, $new_balance );
+                $ss = new SavingService();
+                $saving = $ss->getSavingById( $id_savings );
+                $current_balance = $saving->current_balance;
+                $new_savings_balance = $current_balance + $payment_amount;
+                $ss->updateSavingsBalance( $id_savings, $new_savings_balance );
 
+                $this->sendJSONandExit($message);
+            }
+            else {
+                $message['message'] = 'Balance too low to make this contribution.';
+                $this->sendJSONandExit($message);
+            }
+        } 
+        else 
+        {
+            include __SITE_PATH . '/view/saving_list.php.php';
+        }
+    }
     public function sendJSONandExit( $message )
     {
         header( 'Content-type:application/json;charset=utf-8' );
