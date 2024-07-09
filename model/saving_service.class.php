@@ -23,7 +23,26 @@ class SavingService
 		}
 		return $arr;
 	}
+	
 
+	function getSavingById( $id_savings )
+	{
+		try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare( 'SELECT * FROM savings WHERE id_savings=:id_savings' );
+			$st->execute( array( 'id_savings' => $id_savings ) );
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+		$row = $st->fetch();
+		if( $row === false )
+			return null;
+		else
+			return new Saving( $row['id_savings'],$row['id_user'], $row['savings_name'], $row['savings_goal'], 
+            $row['current_balance'], $row['deadline']);
+	}
+	
 	function updateSavingsBalance( $id_savings, $payment )
 	{
 		try
