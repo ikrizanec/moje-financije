@@ -31,12 +31,13 @@
                         </thead>
                         <tbody>`;
                 data.transactions.forEach(transaction => {
+                    let formattedAmount = parseFloat(transaction.amount).toFixed(2);
                     output += `<tr>
                         <td>${transaction.category_name}</td>
                         <td>${transaction.type}</td>
                         <td>${transaction.description}</td>
                         <td>${transaction.transaction_date}</td>
-                        <td>${transaction.amount} €</td>
+                        <td>${formattedAmount} €</td>
                        </tr>`;
                 });
                 output += `</tbody></table>`;
