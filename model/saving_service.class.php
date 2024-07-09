@@ -29,7 +29,7 @@ class SavingService
 		try
         {
             $db = DB::getConnection();
-            $st = $db->prepare('UPDATE savings SET payment_amount = payment_amount + :payment WHERE id_savings = :id_savings');
+            $st = $db->prepare('UPDATE savings SET current_balance = current_balance + :payment WHERE id_savings = :id_savings');
             $st->execute( array( 'id_savings' => $id_savings , 'payment' => $payment ) );
         }
         catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
