@@ -1,6 +1,6 @@
 <?php
 require_once __SITE_PATH . '/model/saving_service.class.php';
-require_once __SITE_PATH . '/model/saving.class.php';
+require_once __SITE_PATH .  '/model/savingscontributions_service.class.php';
 require_once __SITE_PATH . '/model/user_service.class.php';
 
 class SavingsController {
