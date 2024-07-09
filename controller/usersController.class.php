@@ -52,4 +52,32 @@ class UsersController {
     public function home() {
         include __SITE_PATH . '/view/user_home.php';
     }
+
+    public function balance() {
+
+        if (isset($_SESSION['username'])) {
+            $us = new UserService();
+            $user = $us->getUserByUsername($_SESSION['username']);
+
+            if ($user) {
+                $balance = $user->balance;
+                $message['balance'] = $balance;
+                $this->sendJSONandExit($message);
+            } else {
+                $message['error'] = 'User not found';
+                $this->sendJSONandExit($message);
+            }
+        } else {
+            $message['error'] = 'User not authenticated';
+            $this->sendJSONandExit($message);
+        }
+    }
+
+    public function sendJSONandExit( $message )
+    {
+        header( 'Content-type:application/json;charset=utf-8' );
+        echo json_encode( $message );
+        flush();
+        exit( 0 );
+    }
 }
