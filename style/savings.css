@@ -1,0 +1,92 @@
+.button {
+    width: auto;
+    padding: 8px;
+    color: #ffffff;
+    background: none #191970;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 12px 12px 12px 12px;
+}
+
+.button:hover {
+    background-color: #5a5ace;
+    color: white;
+}
+
+.label {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 12px 12px 12px 12px;
+    width: 100px; 
+}
+
+.title {
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 12px 12px 30px 12px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    height: auto;
+}
+
+.form div {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row; /* Koristimo flex-direction: row za poravnanje labela i inputa */
+    align-items: center; /* Poravnaj labelu i input vertikalno */
+}
+
+.form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px -10px 10px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.1); 
+    margin: 15px 0;
+}
+
+.form .inputGroup {
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    margin-top: 10px;
+}
+
+input[type="text"], textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+#savingsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#savingsTable th, #savingsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#savingsTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #5a5ace;
+    color: white;
+}
+
+#savingsTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#savingsTable tr:hover {
+    background-color: #ddd;
+}
