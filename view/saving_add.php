@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Saving</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -11,23 +11,23 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-    <h1>Add Saving</h1>
+    <h1 class="title">add new saving</h1>
 
-    <form id="addSavingForm">
+    <form id="addSavingsForm" class="form">
         <div>
-            <label for="savings_name">Savings Name:</label>
+            <label for="savings_name" class="label">Name:</label>
             <input type="text" id="savings_name" name="savings_name" required>
         </div>
         <div>
-            <label for="savings_goal">Savings Goal:</label>
+            <label for="savings_goal" class="label">Goal:</label>
             <input type="number" id="savings_goal" name="savings_goal" required>
         </div>
         <div>
-            <label for="deadline">Deadline:</label>
+            <label for="deadline" class="label">Deadline:</label>
             <input type="text" id="deadline" name="deadline" required>
         </div>
-        <div>
-            <button type="submit">Create</button>
+        <div class="buttonContainer">
+            <button type="submit" class="button">create</button>
         </div>
     </form>
 
@@ -37,13 +37,14 @@
         $(document).ready(function() {
             $('#deadline').datepicker({ dateFormat: 'yy-mm-dd' });
 
-            $('#addSavingForm').submit(function(event) {
+            $('#addSavingsForm').submit(function(event) {
                 event.preventDefault();
 
                 $.ajax({
                     url: '<?php echo __SITE_URL; ?>/index.php?rt=savings/add',
                     type: 'POST',
-                    data: {
+                    data: 
+                    { 
                         action: "add",
                         savings_name: $('#savings_name').val(),
                         savings_goal: $('#savings_goal').val(),
@@ -52,7 +53,9 @@
                     dataType: 'json',
                     success: function(data) {
                         $('#successMessage').text(data.message);
-                        $('#addSavingForm')[0].reset();
+                        $('#addSavingsForm')[0].reset();
+                        $('#name').val('');
+                        $('#description').val('');
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.error('Error:', textStatus, errorThrown);
