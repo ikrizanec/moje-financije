@@ -38,7 +38,7 @@
                         output += `<tr id="${saving.id_savings}">
                                 <td>${saving.savings_name}</td>
                                 <td>${saving.savings_goal}</td>
-                                <td>${saving.current_balance}</td>
+                                <td>${saving.current_balance} €</td>
                                 <td>${saving.deadline}</td>
                             </tr>`;
                     });
