@@ -7,6 +7,7 @@ class User
 	function __construct( $id_user, $username, $password_hash, $email, $is_admin, $name, $surname, $balance )
 	{
 		$this->id_user = $id_user;
+		$this->username = $username;
 		$this->password_hash = $password_hash;
         $this->email = $email;
         $this->is_admin = $is_admin;
