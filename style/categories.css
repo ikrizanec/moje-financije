@@ -90,3 +90,57 @@ input[type="text"], textarea {
 #categoriesTable tr:hover {
     background-color: #ddd;
 }
+
+.balanceContainer {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    flex-direction: column;
+}
+
+.balance {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.pieCharts {
+    display: flex;
+    flex-direction: row; /* Promijenjeno iz column u row */
+    flex-wrap: wrap; /* Omogućava prelamanje elemenata na manje ekrane */
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .pieCharts {
+        flex-direction: column; /* Na manjim ekranima se vraća na stupac */
+    }
+}
+
+#myPieChartIncome, #myPieChartExpense {
+    width: 200px !important;
+    height: 200px !important;
+}
+
+.pieChartContainer {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.savingsContainer {
+    margin: 20px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+ #savingsChart {
+    width: 300px !important;
+    height: 300px !important;
+ }

@@ -9,10 +9,14 @@
     <link rel="stylesheet" type="text/css" href="<?php echo __SITE_URL . '/style/categories.css';?>">
     <link rel="stylesheet" type="text/css" href="<?php echo __SITE_URL . '/style/savings.css';?>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="topnav" id="myTopnav">
         <a href="<?php echo __SITE_URL . '/index.php?rt=users/home'; ?>" class="active" id="home">Home</a>
+        <?php if ($_SESSION['admin'] === '1') { ?>
+             <a href="<?php echo __SITE_URL . '/index.php?rt=admin/users'; ?>" id="admin_users">Users</a>
+        <?php } ?>
         <a href="<?php echo __SITE_URL . '/index.php?rt=transactions'; ?>" id="transactions">Transactions</a>
         <a href="<?php echo __SITE_URL . '/index.php?rt=categories'; ?>" id="categories">Categories</a>
         <a href="<?php echo __SITE_URL . '/index.php?rt=savings'; ?>" id="savings">Savings</a>
