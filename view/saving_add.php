@@ -48,11 +48,12 @@
                         action: "add",
                         savings_name: $('#savings_name').val(),
                         savings_goal: $('#savings_goal').val(),
-                        deadline: $('#deadline').val(),
+                        deadline: $('#deadline').val()
                     },
                     dataType: 'json',
                     success: function(data) {
                         $('#successMessage').text(data.message);
+                        $('#addSavingsForm')[0].reset();
                         $('#name').val('');
                         $('#description').val('');
                     },
