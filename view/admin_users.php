@@ -2,17 +2,20 @@
 
 <body>
     <h1>Admin Dashboard</h1>
-    <h2>Users</h2>
-    <button onclick="location.href='<?php echo __SITE_URL; ?>/index.php?rt=admin/newUser'">New User</button>
-    <table>
+    <h1 class="title">all users</h1>
+    <div class="buttonContainer">
+        <button onclick="location.href='<?php echo __SITE_URL; ?>/index.php?rt=admin/newUser'" class="button">new user</button>
+    </div>
+    
+    <table id="categoriesTable">
         <thead>
             <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Balance</th>
-                <th>Actions</th>
+                <th>username</th>
+                <th>email</th>
+                <th>name</th>
+                <th>surname</th>
+                <th>balance</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
@@ -22,9 +25,9 @@
                     <td><?php echo htmlspecialchars($user->email); ?></td>
                     <td><?php echo htmlspecialchars($user->name); ?></td>
                     <td><?php echo htmlspecialchars($user->surname); ?></td>
-                    <td><?php echo htmlspecialchars($user->balance); ?></td>
+                    <td><?php echo htmlspecialchars(number_format($user->balance, 2)) . " €"; ?></td>
                     <td>
-                        <button onclick="deleteUser(<?php echo $user->id_user; ?>)">Delete</button>
+                        <button onclick="deleteUser(<?php echo $user->id_user; ?>)" class="button">Delete</button>
                     </td>
                 </tr>
             <?php } ?>
