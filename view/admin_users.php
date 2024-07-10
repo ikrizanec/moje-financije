@@ -1,12 +1,5 @@
 <?php require_once __SITE_PATH . '/view/_header.php'; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Moje financije</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
 <body>
     <h1>Admin Dashboard</h1>
     <h2>Users</h2>

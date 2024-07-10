@@ -14,7 +14,7 @@ class Category implements jsonSerializable
 	function __get( $prop ) { return $this->$prop; }
 	function __set( $prop, $val ) { $this->$prop = $val; return $this; }
 
-	public function jsonSerialize() {
+	public function jsonSerialize(): mixed {
         return [
             'id_category' => $this->id_category,
             'category_name' => $this->category_name,

@@ -9,31 +9,31 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>Add New User</h1>
+    <h1 class="title">add new user</h1>
 
-    <form id="addUserForm">
+    <form id="addUserForm" class="form">
         <div>
-            <label for="username">Username:</label>
+            <label for="username" class="label">Username:</label>
             <input type="text" id="username" name="username" required>
         </div>
         <div>
-            <label for="password">Password:</label>
+            <label for="password" class="label">Password:</label>
             <input type="password" id="password" name="password" required>
         </div>
         <div>
-            <label for="email">Email:</label>
+            <label for="email" class="label">Email:</label>
             <input type="email" id="email" name="email" required>
         </div>
         <div>
-            <label for="name">Name:</label>
+            <label for="name" class="label">Name:</label>
             <input type="text" id="name" name="name" required>
         </div>
         <div>
-            <label for="surname">Surname:</label>
+            <label for="surname" class="label">Surname:</label>
             <input type="text" id="surname" name="surname" required>
         </div>
         <div>
-            <label for="balance">Balance:</label>
+            <label for="balance" class="label">Balance:</label>
             <input type="number" id="balance" name="balance" required>
         </div>
         <div>
@@ -41,8 +41,8 @@
                 <input type="checkbox" id="is_admin" name="is_admin"> Is Admin
             </label>
         </div>
-        <div>
-            <button type="submit">Add User</button>
+        <div class="buttonContainer">
+            <button type="submit" class="button">add user</button>
         </div>
     </form>
 
