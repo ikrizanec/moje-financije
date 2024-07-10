@@ -13,6 +13,9 @@
 <body>
     <div class="topnav" id="myTopnav">
         <a href="<?php echo __SITE_URL . '/index.php?rt=users/home'; ?>" class="active" id="home">Home</a>
+        <?php if ($_SESSION['admin'] === '1') { ?>
+             <a href="<?php echo __SITE_URL . '/index.php?rt=admin/users'; ?>" id="admin_users">Users</a>
+        <?php } ?>
         <a href="<?php echo __SITE_URL . '/index.php?rt=transactions'; ?>" id="transactions">Transactions</a>
         <a href="<?php echo __SITE_URL . '/index.php?rt=categories'; ?>" id="categories">Categories</a>
         <a href="<?php echo __SITE_URL . '/index.php?rt=savings'; ?>" id="savings">Savings</a>
