@@ -17,7 +17,7 @@ class Saving implements jsonSerializable
 	function __get( $prop ) { return $this->$prop; }
 	function __set( $prop, $val ) { $this->$prop = $val; return $this; }
 
-	public function jsonSerialize() {
+	public function jsonSerialize(): mixed {
         return [
             'id_savings' => $this->id_savings,
             'id_user' => $this->id_user,
