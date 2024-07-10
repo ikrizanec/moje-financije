@@ -1,67 +1,92 @@
-
 <?php require_once __SITE_PATH . '/view/_header.php'; ?>
 
 <body>
+    <main>
     <div class="buttonContainer">
         <button id="addSavingsBtn" class="button">add new savings</button>
     </div>
     <p id="test" class="test"></p>
 
-
     <script>
-        $.ajax(
-        {
-            url: '<?php echo __SITE_URL; ?>/index.php?rt=savings',
-            type: 'GET',
-            data: 
-            { 
-                action: "list"
-            },
-            dataType: 'json',
-            success: function(data) {
-                let output = `<table id="savingsTable">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Goal</th>
-                                <th>Balance</th>
-                                <th>Deadline</th>
-                                <th>Contribute</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
-                data.savings.forEach(savings => {
-                    output += `<tr>
-                        <td>${savings.savings_name}</td>
-                        <td>${savings.savings_goal}</td>
-                        <td>${savings.current_balance}</td>
-                        <td>${savings.deadline}</td>
-                        <td><button id="addContributeBtn" class="button" value="${savings.id_savings}">contribute</button></td>
-                       </tr>`;
-                });
-                output += `</tbody></table>`;
-                $('.test').html(output);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error('Error:', textStatus, errorThrown);
-                $('.test').html('An error occurred while fetching categories.');
-            }
-        } );
+        $(document).ready(function() {
+            $.ajax(
+            {
+                url: '<?php echo __SITE_URL; ?>/index.php?rt=savings',
+                type: 'GET',
+                data:
+                {
+                    action: "list"
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if (data.status === 'error') {
+                        console.error(data.message);
+                        $('#test').html('An error occurred while fetching savings.');
+                        return;
+                    }
+                    let output = `<table id="savingsTable">
+                            <thead>
+                                <tr>
+                                    <th>name</th>
+                                    <th>goal</th>
+                                    <th>balance</th>
+                                    <th>deadline</th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+                    data.savings.forEach(saving => {
+                        output += `<tr id="${saving.id_savings}">
+                                <td>${saving.savings_name}</td>
+                                <td>${saving.savings_goal}</td>
+                                <td>${saving.current_balance}</td>
+                                <td>${saving.deadline}</td>
+                            </tr>`;
+                    });
+                    output += `</tbody></table>`;
+                    $('#test').html(output);
+
+                    $('#savingsTable tbody').on('click', 'tr', function() {
+                        let payment_amount = prompt("New contribution:");
+                        console.log(payment_amount);
+
+                        $.ajax({
+                            url: '<?php echo __SITE_URL; ?>/index.php?rt=savings/add_contribution',
+                            type: 'POST',
+                            data: {
+                                action: "add_contribution",
+                                id_savings: $(this).attr('id'),
+                                payment_amount: payment_amount
+                            },
+                            dataType: 'json',
+                            success: function(data) {
+                                $('#successMessage').text(data.message);
+                                if ($('#addSavingForm').length) {
+                                    $('#addSavingForm')[0].reset();
+                                }
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.error('Error:', textStatus, errorThrown);
+                                $('#successMessage').text('Failed to add contribution.');
+                            }
+                        });
+                    });
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error:', textStatus, errorThrown);
+                    $('#test').html('An error occurred while fetching savings.');
+                }
+        });
 
         $('#addSavingsBtn').click(function() {
             window.location.href = '<?php echo __SITE_URL; ?>/index.php?rt=savings/add';
         });
-
-        $('#addContributeBtn').click(function() {
-            let id_savings = $(this).data('id_savings');
-            let id_user = '<?php echo $_SESSION['id_user']; ?>';
-
-            
-            window.location.href = '<?php echo __SITE_URL; ?>/index.php?rt=savings/add&id_savings=' + id_savings + '&id_user=' + id_user;
-        });
+    });
 
     </script>
-</body>
-</html>
 
 <?php require_once __SITE_PATH . '/view/_footer.php'; ?>
+
+
+
+
+
