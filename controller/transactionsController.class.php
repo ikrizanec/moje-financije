@@ -1,6 +1,7 @@
 <?php
 
 require_once __SITE_PATH . '/model/transactions_service.class.php';
+require_once __SITE_PATH . '/model/category_service.class.php';
 require_once __SITE_PATH . '/model/transactions.class.php';
 require_once __SITE_PATH . '/model/user_service.class.php';
 
@@ -13,9 +14,10 @@ class TransactionsController {
             if (isset($_GET['action']) && $_GET['action'] === 'list') 
             {
                 $ts = new TransactionsService();
+                $cs = new CategoryService();
                 $user_id = $_SESSION['id_user'];
                 $transactions = $ts->getAllTransactions($user_id);
-                $categories = $ts->getCategoryNames();
+                $categories = $cs->getCategoryNames();
         
                 $category_lookup = [];
                 foreach ($categories as $category) {
@@ -52,7 +54,8 @@ class TransactionsController {
     public function add() 
     {
         $ts = new TransactionsService();
-        $categories = $ts->getCategoryNames();
+        $cs = new CategoryService();
+        $categories = $cs->getCategoryNames();
 
         if (isset($_SESSION['username'])) 
         {
