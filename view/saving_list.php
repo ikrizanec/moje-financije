@@ -24,7 +24,7 @@
                         $('#test').html('An error occurred while fetching savings.');
                         return;
                     }
-                    let output = `<table id="savingsTable">
+                    let output = `<table id="categoriesTable">
                             <thead>
                                 <tr>
                                     <th>name</th>
@@ -45,7 +45,7 @@
                     output += `</tbody></table>`;
                     $('#test').html(output);
 
-                    $('#savingsTable tbody').on('click', 'tr', function() {
+                    $('#categoriesTable tbody').on('click', 'tr', function() {
                         let payment_amount = prompt("New contribution:");
                         console.log(payment_amount);
 
