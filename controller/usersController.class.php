@@ -50,7 +50,11 @@ class UsersController {
     }
 
     public function home() {
-        include __SITE_PATH . '/view/user_home.php';
+        if (isset($_SESSION['username'])) {
+            include __SITE_PATH . '/view/user_home.php';
+        } else {
+            include __SITE_PATH . '/view/login.php';
+        }
     }
 
     public function balance() {
