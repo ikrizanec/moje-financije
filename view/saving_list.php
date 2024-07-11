@@ -35,10 +35,11 @@
                             </thead>
                             <tbody>`;
                     data.savings.forEach(saving => {
+                        let formattedbalance = parseFloat(saving.current_balance).toFixed(2);
                         output += `<tr id="${saving.id_savings}">
                                 <td>${saving.savings_name}</td>
                                 <td>${saving.savings_goal}</td>
-                                <td>${saving.current_balance} €</td>
+                                <td>${formattedbalance} €</td>
                                 <td>${saving.deadline}</td>
                             </tr>`;
                     });
