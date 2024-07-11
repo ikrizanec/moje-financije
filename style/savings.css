@@ -72,12 +72,12 @@ input[type="text"], textarea {
 
 #savingsTable th, #savingsTable td {
     border: 1px solid #ddd;
-    padding: 2px;
+    padding: 8px;
 }
 
 #savingsTable th {
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     text-align: left;
     background-color: #5a5ace;
     color: white;
