@@ -75,6 +75,10 @@ class ReportsController {
 
             $pdf->Ln(10);
         }
+        else {
+            $pdf->Cell(0, 10, 'No transactions found.', 0, 1, 'C');
+            $pdf->Ln(10);  
+        }
 
         if (!empty($savings)) {
             foreach ($savings as $saving) {
@@ -87,12 +91,14 @@ class ReportsController {
                 $saving_id = $saving->id_savings;
                 if (isset($contributions[$saving_id])) {
                     foreach ($contributions[$saving_id] as $contribution) {
-                        $pdf->Cell(30, 10, $contribution->contribution_date, 1);
-                        $pdf->Cell(30, 10, $contribution->payment_amount, 1);
-                        $pdf->Ln();
+                        if ($contribution->contribution_date >= $begin_date && $contribution->contribution_date <= $end_date) {
+                            $pdf->Cell(30, 10, $contribution->contribution_date, 1);
+                            $pdf->Cell(60, 10, $contribution->payment_amount, 1);
+                            $pdf->Ln();
+                        }
                     }
                 } else {
-                    $pdf->Cell(10, 10, 'No contributions found.', 1);
+                    $pdf->Cell(0, 10, 'No contributions found.', 1);
                     $pdf->Ln();
                 }
 
