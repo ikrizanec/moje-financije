@@ -94,7 +94,7 @@ class ReportsController {
                     foreach ($contributions[$saving_id] as $contribution) {
                         if ($contribution->contribution_date >= $begin_date && $contribution->contribution_date <= $end_date) {
                             $pdf->Cell(30, 10, $contribution->contribution_date, 1);
-                            $pdf->Cell(60, 10, $contribution->payment_amount, 1);
+                            $pdf->Cell(30, 10, $contribution->payment_amount, 1);
                             $pdf->Ln();
                             $flag = 1;
                         }
