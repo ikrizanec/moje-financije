@@ -18,7 +18,7 @@ class Transactions implements jsonSerializable
 	function __get( $prop ) { return $this->$prop; }
 	function __set( $prop, $val ) { $this->$prop = $val; return $this; }
 
-	public function jsonSerialize(): mixed {
+	public function jsonSerialize() {
         return [
             'category_name' => $this->id_category,
             'amount' => $this->amount,
