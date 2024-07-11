@@ -62,39 +62,6 @@ class UserService{
 		return $arr;
 	}
 
-    function updateName( $username, $name )
-    {
-        try
-        {
-            $db = DB::getConnection();
-            $st = $db->prepare('UPDATE users SET name = :name WHERE username = :username');
-            $st->execute( array( 'username' => $username , 'name' => $name ) );
-        }
-        catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-    }
-
-    function updateSurname( $username, $surname )
-    {
-        try
-        {
-            $db = DB::getConnection();
-            $st = $db->prepare('UPDATE users SET surname = :surname WHERE username = :username');
-            $st->execute( array( 'username' => $username , 'surname' => $surname ) );
-        }
-        catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-    }
-
-    function updateEmail( $username, $email )
-    {
-        try
-        {
-            $db = DB::getConnection();
-            $st = $db->prepare('UPDATE users SET email = :email WHERE username = :username');
-            $st->execute( array( 'username' => $username , 'email' => $email ) );
-        }
-        catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-    }
-
     function isAdmin( $id_user )
     {
         try
