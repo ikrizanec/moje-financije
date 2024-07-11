@@ -82,27 +82,34 @@ class ReportsController {
 
         if (!empty($savings)) {
             foreach ($savings as $saving) {
-                $pdf->Cell(0, 10, "Savings: {$saving->savings_name}", 0, 1, 'L');
-                $pdf->Ln();
-                $pdf->Cell(30, 10, 'Date', 1);
-                $pdf->Cell(30, 10, 'Contribution', 1);
-                $pdf->Ln();
-
                 $saving_id = $saving->id_savings;
                 if (isset($contributions[$saving_id])) {
+                    $pdf->Cell(0, 10, "Savings: {$saving->savings_name}", 0, 1, 'L');
+                    $pdf->Ln();
+                    $pdf->Cell(30, 10, 'Date', 1);
+                    $pdf->Cell(30, 10, 'Contribution', 1);
+                    $pdf->Ln();
+
+                    $flag = 0;
                     foreach ($contributions[$saving_id] as $contribution) {
                         if ($contribution->contribution_date >= $begin_date && $contribution->contribution_date <= $end_date) {
                             $pdf->Cell(30, 10, $contribution->contribution_date, 1);
                             $pdf->Cell(60, 10, $contribution->payment_amount, 1);
                             $pdf->Ln();
+                            $flag = 1;
                         }
+                    }
+
+                    if(!$flag) {
+                        $pdf->Cell(0, 10, 'No contributions found.', 1);
+                        $pdf->Ln();
                     }
                 } else {
                     $pdf->Cell(0, 10, 'No contributions found.', 1);
                     $pdf->Ln();
                 }
 
-                $pdf->Ln(10); // Add space between savings
+                $pdf->Ln(10);
             }
         }
 
