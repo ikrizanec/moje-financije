@@ -10,9 +10,9 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-    <h1 class="title">generate report</h1>
+    <h1 class="title">Generate Report</h1>
 
-    <form id="reportForm" class="form">
+    <form id="reportForm" class="form" method="post" action="<?php echo __SITE_URL; ?>/index.php?rt=reports">
         <div>
             <label for="begin_date" class="label">Begin date:</label>
             <input type="text" id="begin_date" name="begin_date" required>
@@ -22,8 +22,9 @@
             <input type="text" id="end_date" name="end_date" required>
         </div>
         <div class="buttonContainer">
-            <button type="submit" class="button">generate</button>
+            <button type="submit" class="button">Generate</button>
         </div>
+        <input type="hidden" name="action" value="generate">
     </form>
 
     <div id="successMessage"></div>
@@ -32,33 +33,8 @@
         $(document).ready(function() {
             $('#begin_date').datepicker({ dateFormat: 'yy-mm-dd' });
             $('#end_date').datepicker({ dateFormat: 'yy-mm-dd' });
-
-            $('#reportForm').submit(function(event) {
-                event.preventDefault();
-
-                $.ajax({
-                    url: '<?php echo __SITE_URL; ?>/index.php?rt=reports',
-                    type: 'POST',
-                    data: 
-                    { 
-                        action: "generate",
-                        begin_date: $('#begin_date').val(),
-                        end_date: $('#end_date').val()
-                    },
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#successMessage').text(data.message);
-                        $('#reportForm')[0].reset();
-                        $('#begin_date').val('');
-                        $('#end_date').val('');
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.error('Error:', textStatus, errorThrown);
-                        $('#successMessage').text('Failed to generate report.');
-                    }
-                });
-            });
         });
     </script>
 
 <?php require_once __SITE_PATH . '/view/_footer.php'; ?>
+
