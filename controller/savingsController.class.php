@@ -63,13 +63,13 @@ class SavingsController {
             $id_user = $user->id_user;
             $sc = new SavingsContributionsService();
             $id_savings = $_POST['id_savings'];
-            $payment_amount = (int)$_POST['payment_amount'];
+            $payment_amount = $_POST['payment_amount'];
             $contribution_date = date('Y-m-d');
             $new_balance = $user->balance - $payment_amount;
             if ( $new_balance >= 0 )
             {
                 $sc->addSavingsContributions( $id_savings, $payment_amount, $contribution_date );
-                $us->updateBalance( $id_user, $new_balance );
+                $us->updateBalance( $_SESSION['username'], $new_balance );
                 $ss = new SavingService();
                 $ss->updateSavingsBalance( $id_savings, $payment_amount );
                 $message['message'] = 'Saving added successfully!';
