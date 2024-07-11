@@ -31,20 +31,26 @@ class SavingsController {
 
     public function add() {
         if (isset($_SESSION['username'])) {
-            if ( isset( $_POST['action'] ) && isset( $_SESSION['username'] ) && $_POST['action'] === 'add' )
+            if ( isset( $_POST['action'] ) && $_POST['action'] === 'add' )
             {
-                $us = new UserService();
-                $user = $us->getUserByUsername( $_SESSION['username'] );
-                $id_user = $user->id_user;
-                $ss = new SavingService();
-                $savings_name = $_POST['savings_name'];
-                $savings_goal = $_POST['savings_goal'];
-                $current_balance = 0;
-                $deadline = $_POST['deadline'];
-                $ss->addSaving( $id_user, $savings_name, $savings_goal, $current_balance, $deadline );
-                
-                $message['message'] = 'Saving added successfully!';
-                $this->sendJSONandExit($message);
+                if (!preg_match('/^\d+(\.\d{1,2})?$/', $_POST['savings_goal'])) {
+                    $message['message'] = 'Invalid savings goal.';
+                    $this->sendJSONandExit($message);
+                }
+                else {
+                    $us = new UserService();
+                    $user = $us->getUserByUsername( $_SESSION['username'] );
+                    $id_user = $user->id_user;
+                    $ss = new SavingService();
+                    $savings_name = $_POST['savings_name'];
+                    $savings_goal = $_POST['savings_goal'];
+                    $current_balance = 0;
+                    $deadline = $_POST['deadline'];
+                    $ss->addSaving( $id_user, $savings_name, $savings_goal, $current_balance, $deadline );
+                    
+                    $message['message'] = 'Saving added successfully!';
+                    $this->sendJSONandExit($message);
+                }
             } 
             else 
             {
@@ -58,26 +64,32 @@ class SavingsController {
     public function add_contribution() {
         if ( isset( $_POST['action'] ) && isset( $_SESSION['username'] ) && $_POST['action'] === 'add_contribution' )
         {
-            $us = new UserService();
-            $user = $us->getUserByUsername( $_SESSION['username'] );
-            $id_user = $user->id_user;
-            $sc = new SavingsContributionsService();
-            $id_savings = $_POST['id_savings'];
-            $payment_amount = $_POST['payment_amount'];
-            $contribution_date = date('Y-m-d');
-            $new_balance = $user->balance - $payment_amount;
-            if ( $new_balance >= 0 )
-            {
-                $sc->addSavingsContributions( $id_savings, $payment_amount, $contribution_date );
-                $us->updateBalance( $_SESSION['username'], $new_balance );
-                $ss = new SavingService();
-                $ss->updateSavingsBalance( $id_savings, $payment_amount );
-                $message['message'] = 'Saving added successfully!';
+            if (!preg_match('/^\d+(\.\d{1,2})?$/', $_POST['payment_amount'])) {
+                $message['message'] = 'Invalid payment amount.';
                 $this->sendJSONandExit($message);
             }
             else {
-                $message['message'] = 'Balance too low to make this contribution.';
-                $this->sendJSONandExit($message);
+                $us = new UserService();
+                $user = $us->getUserByUsername( $_SESSION['username'] );
+                $id_user = $user->id_user;
+                $sc = new SavingsContributionsService();
+                $id_savings = $_POST['id_savings'];
+                $payment_amount = $_POST['payment_amount'];
+                $contribution_date = date('Y-m-d');
+                $new_balance = $user->balance - $payment_amount;
+                if ( $new_balance >= 0 )
+                {
+                    $sc->addSavingsContributions( $id_savings, $payment_amount, $contribution_date );
+                    $us->updateBalance( $_SESSION['username'], $new_balance );
+                    $ss = new SavingService();
+                    $ss->updateSavingsBalance( $id_savings, $payment_amount );
+                    $message['message'] = 'Saving added successfully!';
+                    $this->sendJSONandExit($message);
+                }
+                else {
+                    $message['message'] = 'Balance too low to make this contribution.';
+                    $this->sendJSONandExit($message);
+                }
             }
         } 
         else 
@@ -94,4 +106,6 @@ class SavingsController {
         exit( 0 );
     }
 }
+
+
 
