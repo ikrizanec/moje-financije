@@ -7,7 +7,7 @@ class AdminController {
     public function users() {
         $us = new UserService();
 
-        if ($_SESSION['admin'] === 1) {
+        if ($us->isAdmin($_SESSION['id_user'])) {
             $users = $us->getAllUsers();
             include __SITE_PATH . '/view/admin_users.php';
         }
@@ -18,7 +18,7 @@ class AdminController {
     
         if (isset($_POST['action']) && isset($_SESSION['id_user']) && $_POST['action'] === 'add' ) {
     
-            if ($_SESSION['admin'] === 1) {
+            if ($us->isAdmin($_SESSION['id_user'])) {
                 $username = $_POST['username'];
                 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 $email = $_POST['email'];
