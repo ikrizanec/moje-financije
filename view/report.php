@@ -22,7 +22,7 @@
             <input type="text" id="end_date" name="end_date" required>
         </div>
         <div class="buttonContainer">
-            <button type="submit" class="button">Generate</button>
+            <button type="submit" class="button">generate</button>
         </div>
         <input type="hidden" name="action" value="generate">
     </form>
