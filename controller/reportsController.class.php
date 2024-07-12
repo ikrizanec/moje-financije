@@ -30,7 +30,7 @@ class ReportsController {
                         $contributions[$saving_id] = $saving_contributions;
                     }
 
-                    if ($transactions !== false && $transactions !== false) {
+                    if ($transactions !== false && $savings !== false && $contributions !== false) {
                         $pdf = $this->generatePDF($transactions, $savings, $contributions, $begin_date, $end_date);
                         $this->sendPDF($pdf);
                     } else {
