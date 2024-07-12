@@ -19,7 +19,8 @@
             },
             dataType: 'json',
             success: function(data) {
-                let output = `<table id="categoriesTable">
+                let output = `<div style="overflow-x:auto;">
+                    <table id="categoriesTable">
                         <thead>
                             <tr>
                                 <th>category</th>
@@ -40,7 +41,7 @@
                         <td>${formattedAmount} €</td>
                        </tr>`;
                 });
-                output += `</tbody></table>`;
+                output += `</tbody></table></div>`;
                 $('.test').html(output);
             },
             error: function(jqXHR, textStatus, errorThrown) {
