@@ -6,7 +6,8 @@
     <div class="buttonContainer">
         <button onclick="location.href='<?php echo __SITE_URL; ?>/index.php?rt=admin/newUser'" class="button">new user</button>
     </div>
-    
+
+    <div style="overflow-x:auto;">
     <table id="categoriesTable">
         <thead>
             <tr>
@@ -33,6 +34,7 @@
             <?php } ?>
         </tbody>
     </table>
+    </div>
     <p id="message"></p>
 
     <script>
